@@ -30,3 +30,27 @@ String.prototype.substrings = function () {
 
 let subsArr = "hello";
 console.log(subsArr.substrings());
+
+function exp(b, n) {
+  if (n === 0) {
+    return 1;
+  }
+
+  return b * exp(b, n - 1);
+}
+
+console.log(exp(2, 3));
+
+function exp2(b, n) {
+  if ( n=== 0) {
+    return 1;
+  }
+
+  if (n % 2 === 0){
+    return Math.pow(exp(b, n / 2),2);
+  } else {
+    return (b * Math.pow(exp(b, (n - 1) / 2), 2));
+  }
+}
+
+console.log(exp2(2, 6));
