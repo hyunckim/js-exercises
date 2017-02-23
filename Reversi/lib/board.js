@@ -41,17 +41,29 @@ Board.prototype.getPiece = function (pos) {
   let x = pos[0];
   let y = pos[1];
 
-  if (0 < x && x < 8 && 0 < y && y < 8) {
+  if (0 <= x && x < 8 && 0 <= y && y < 8) {
     return this.grid[x][y];
   } else {
-    throw 'Not valid pos!';
+    throw new Error("Not valid pos!");
   }
 };
 
 /**
  * Checks if there are any valid moves for the given color.
  */
+
+let directions = [[1,0], [1, 1], [0, 1], [-1, 0], [0, -1], [1, -1], [-1, 1], [-1, -1]];
 Board.prototype.hasMove = function (color) {
+  //outer loop for all pieces
+  for(let i = 0;i < 8;i++){
+    for(let j = 0;j < 8;j++){
+      if(this.isMine([i,j], color)){
+        for(let n = 0; n < directions.length; n++){
+          
+        }
+      }
+    }
+  }
 };
 
 /**
@@ -59,12 +71,19 @@ Board.prototype.hasMove = function (color) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  let piece = this.getPiece(pos);
+  if(piece && piece.color === color) {return true;}
+  return false;
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  if(this.getPiece(pos)){
+    return true;
+  }
+  return false;
 };
 
 /**
